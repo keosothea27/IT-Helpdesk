@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IT Helpdesk Support</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>🛠️ IT Helpdesk Support</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Need Help?</h2>
+      <p>Fill out the form below and our IT team will get back to you.</p>
+      
+      <form id="supportForm">
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" required><br><br>
+
+        <label for="issue">Describe Your Issue:</label><br>
+        <textarea id="issue" rows="4" required></textarea><br><br>
+
+        <button type="submit">Submit Request</button>
+      </form>
+
+      <p id="responseMessage" style="margin-top:20px;"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 IT Support Desk - All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
