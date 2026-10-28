@@ -1,42 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IT Helpdesk Support</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IT Management System</title>
+<style>
+:root{--bg:#f3f5f8;--sf:#fff;--tx:#17212b;--mu:#5d6b78;--bd:#dde3e9;--ac:#2c4678;--hi:#f5b335;--nv:#2c4678;--nv2:#233a66;--wn:#a15c07;--er:#b42318;--ok:#157347;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1824;--sf:#18263a;--tx:#e6edf5;--mu:#98a8b8;--bd:#2a3d55;--ac:#7fa6ee;--wn:#f0b25a;--er:#ff8a7a;--ok:#6fd49a}}
+:root[data-theme=dark]{--bg:#0f1824;--sf:#18263a;--tx:#e6edf5;--mu:#98a8b8;--bd:#2a3d55;--ac:#7fa6ee;--wn:#f0b25a;--er:#ff8a7a;--ok:#6fd49a}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 "Inter","Segoe UI",system-ui,sans-serif}
+.app{display:flex;min-height:100vh}
+nav{width:250px;flex:none;background:var(--nv);color:#dbe4f5;height:100vh;position:sticky;top:0;overflow-y:auto;padding-bottom:20px}
+.lg{font:italic 700 26px Georgia,serif;color:#fff;padding:16px 18px}
+.gh{display:flex;align-items:center;width:calc(100% - 16px);margin:2px 8px;justify-content:space-between;background:none;border:0;border-radius:8px;color:#dbe4f5;padding:10px 12px;text-align:left}.gh:hover{background:rgba(255,255,255,.08)}.gh.on{color:var(--hi);font-weight:600;background:rgba(255,255,255,.1)}.gl{display:flex;align-items:center;gap:12px}.cv{display:flex;transition:transform .2s}.cv.up{transform:rotate(180deg)}.cv svg{width:16px;height:16px}
+.gb{background:var(--nv2);display:none}.gb.open{display:block}
+.gb a{display:block;padding:7px 18px 7px 52px;font-size:14px;color:#cfd9ec;cursor:pointer}.gb a.on{color:#fff;font-weight:700;background:rgba(255,255,255,.12)}
+main{flex:1;min-width:0}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--sf);border-bottom:1px solid var(--bd);padding:10px 20px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--nv);color:#fff;display:grid;place-items:center;font-size:12px}
+.pg{padding:18px 20px}h1{font-size:21px;margin:0 0 14px}h2{font-size:15px;margin:0 0 10px;color:var(--ac)}
+input,select,textarea,button{font:inherit;color:var(--tx);background:var(--sf);border:1px solid var(--bd);border-radius:5px;padding:7px 10px}
+button{cursor:pointer}button.p{background:var(--nv);border-color:var(--nv);color:#fff}button.d{color:var(--er)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.note{color:var(--mu);font-size:13px}.empty{padding:24px;text-align:center;color:var(--mu)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.wrap{overflow-x:auto;background:var(--sf);border:1px solid var(--bd);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--bd);font-size:14px;white-space:nowrap}th{color:var(--mu)}tr:last-child td{border:0}
+.tag{padding:2px 8px;border-radius:10px;font-size:12px;background:var(--bd)}.tag.w{color:var(--wn)}.tag.b{color:var(--er)}.tag.g{color:var(--ok)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.t{border-radius:4px;padding:12px 14px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;font-size:20px}.t b{display:block;font-size:30px;line-height:1.1}.t small{font-size:13px}.t.g{background:var(--bd);color:var(--tx)}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:14px}
+.cd{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:14px;margin-bottom:12px}.g3 .cd{margin:0}.cd p{margin:4px 0}
+.dn{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px}.dn span{width:76px;height:76px;border-radius:50%;background:var(--sf);display:grid;place-items:center;font-size:24px;font-weight:700}
+.lgd{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--mu)}.lgd u{display:inline-block;width:10px;height:10px;margin-right:4px;border-radius:2px}
+.sb{display:flex;gap:8px;height:170px;margin-bottom:8px}.col{flex:1;display:flex;flex-direction:column;height:100%;font-size:11px;color:var(--mu);text-align:center}.stk{flex:1;display:flex;flex-direction:column-reverse}.stk i{display:block}
+.hb{display:flex;align-items:center;gap:8px;font-size:13px;margin:6px 0}.hb span{width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hb i{height:12px;background:var(--ac);border-radius:2px}
+.ck{display:block;margin:8px 0}
+dialog{border:1px solid var(--bd);border-radius:8px;background:var(--sf);color:var(--tx);width:min(520px,94vw);padding:18px;max-height:92vh;overflow:auto}
+dialog label{display:block;font-size:13px;color:var(--mu);margin-bottom:10px}dialog input,dialog select,dialog textarea{display:block;width:100%;margin-top:3px}
+@media(max-width:800px){.app{flex-direction:column}nav{width:auto;height:auto;max-height:45vh;position:static}}
+@media print{nav,.bar,.tools,button{display:none!important}.app{display:block}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🛠️ STMarket IT Helpdesk Support</h1>
-  </header>
-
-  <main>
-    <section>
-      <h2>Need Help?</h2>
-      <p>Fill out the form below and our IT team will get back to you.</p>
-      
-      <form id="supportForm">
-        <label for="name">Full Name:</label><br>
-        <input type="text" id="name" required><br><br>
-
-        <label for="email">Email Address:</label><br>
-        <input type="email" id="email" required><br><br>
-
-        <label for="issue">Describe Your Issue:</label><br>
-        <textarea id="issue" rows="4" required></textarea><br><br>
-
-        <button type="submit">Submit Request</button>
-      </form>
-
-      <p id="responseMessage" style="margin-top:20px;"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 IT Support Desk - All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+<div class="app"><nav id="nav"></nav>
+<main><div class="bar"><span id="bc" class="note"></span><span style="flex:1"></span>
+<input type="search" placeholder="Search assets" aria-label="Search assets" onkeydown="if(event.key==='Enter')gsearch(this.value)">
+<label class="note">Role <select id="role" onchange="relog()"><option>Administrator</option><option>IT Technician</option><option>Employee</option></select></label><span class="av" aria-hidden="true">IT</span><button id="so" hidden onclick="sb.auth.signOut().then(()=>location.reload())">Sign out</button></div>
+<div class="pg"><h1 id="ttl"></h1><div id="v"></div></div></main></div>
+<dialog id="dlg"></dialog>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const CAT=["Laptop","Desktop","Monitor","Peripheral","Printer","Scanner","Server","Router","Switch","Access Point","Firewall","CCTV","NVR","UPS"];
+const AST=["In Use","In Stock","Under Repair","Retired","Lost"];
+const TST=["Open","Assigned","In Progress","Pending","Resolved","Closed"];
+const PRI=["Low","Medium","High","Critical"];
+const TCAT=["Hardware","Software","Network","Account & Access","Other"];
+const $=i=>document.getElementById(i),pad=(n,l)=>String(n).padStart(l,"0");
+const iso=o=>{const d=new Date();d.setDate(d.getDate()+o);return d.toISOString().slice(0,10)};
+const days=d=>d?Math.ceil((new Date(d)-new Date(iso(0)))/864e5):9999;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const so=a=>a.join("/");
+const PF=s=>s.split(";").map(p=>{const[a,b,c,d]=p.split(":");return[a,b,c,d?d.split("/"):0]});
+const def=(t,p,n,f,c,fl="")=>({t,p,n,f:PF(f),c:c.split(","),fl:fl?fl.split(","):[]});
+const E={
+assets:def("Assets","IT-",4,`name:Asset name;category:Category:sel:${so(CAT)};brand:Brand and model;serial:Serial number;dept:Department:dept;owner:Assigned to:emp;location:Location:loc;purchase:Purchase date:date;price:Purchase price;warranty:Warranty ends:date;status:Status:sel:${so(AST)};ip:IP address;mac:MAC address;notes:Notes:area`,"id,name,category,dept,owner,status,warranty","status,category"),
+tickets:def("Tickets","TKT-2026-",4,`requester:Requester:emp;category:Category:sel:${so(TCAT)};description:Description:area;priority:Priority:sel:${so(PRI)};tech:Technician;status:Status:sel:${so(TST)};created:Created date:date;hours:Hours spent;resolution:Resolution:area`,"id,requester,category,description,priority,tech,status,created","status,priority"),
+comments:def("Ticket comments","CMT-",3,"ticket:Ticket:tkt;author:Author;comment:Comment:area;date:Date:date","id,ticket,author,comment,date"),
+licenses:def("Licenses","LIC-",3,"software:Software name;version:Version;type:License type;seats:Number of licenses;purchase:Purchase date:date;expires:Expiration date:date;notes:Notes (no license keys):area","id,software,version,type,seats,expires"),
+swrecords:def("Software records","SWR-",3,"software:Software;type:Record type:sel:Assignment/Installation/Renewal;target:Device or employee;date:Date:date;cost:Cost;notes:Notes:area","id,software,type,target,date,cost","type"),
+employees:def("Employees","EMP-",3,"name:Full name;dept:Department:dept;location:Location:loc;email:Email;status:Status:sel:Active/Inactive","id,name,dept,location,email,status","dept,status"),
+departments:def("Departments","DEP-",2,"name:Department name","id,name"),
+users:def("Users","USR-",2,"name:Full name;email:Email;role:Role:sel:Administrator/IT Technician/Employee;status:Status:sel:Active/Disabled","id,name,email,role,status"),
+movements:def("Asset movements","MOV-",3,"asset:Asset:asset;type:Type:sel:Assignment/Transfer/Return;from:From;to:To;date:Date:date;notes:Notes:area","id,asset,type,from,to,date","type"),
+maintenance:def("Maintenance","MNT-",3,"asset:Asset:asset;type:Type:sel:Preventive/Repair/Infrastructure;vendor:Vendor:ven;date:Date:date;status:Status:sel:Scheduled/In Progress/Done;tech:Technician;cost:Cost;parts:Parts replaced;notes:Notes:area","id,asset,type,vendor,date,status,cost","status,type"),
+vendors:def("Vendors","VEN-",2,"name:Vendor name;contact:Contact person;phone:Phone;email:Email;service:Services","id,name,contact,phone,email,service"),
+ips:def("IP addresses","IP-",3,"ip:IP address;device:Device;mac:MAC address;vlan:VLAN;location:Location:loc;status:Status:sel:Used/Free/Reserved","id,ip,device,mac,vlan,location,status","status"),
+docs:def("Network documents","DOC-",2,"title:Title;type:Type:sel:Diagram/Procedure/Vendor/Other;url:Link;notes:Notes:area","id,title,type,url"),
+locations:def("Locations","LOC-",2,"name:Location or office;address:Address or floor","id,name,address"),
+categories:def("Categories","CAT-",2,"name:Name;type:Type:sel:Ticket category/Priority;sla:Response target (hours)","id,name,type,sla")};
+const mk=(p,n,k,r)=>r.map((a,i)=>Object.fromEntries([["id",p+pad(i+1,n)],...k.split(",").map((x,j)=>[x,a[j]??""])]));
+function seed(){const d=iso;
+const A=[["Lenovo Laptop","Laptop","Accounting","Employee A","In Use",200],["Dell Desktop","Desktop","IT","","In Stock",120],["Dell Monitor","Monitor","HR","Employee B","In Use",400],["Logitech Mouse","Peripheral","Accounting","Employee A","In Use",300],["HP Printer","Printer","HR","Employee B","In Use",20],["Epson Scanner","Scanner","HR","","Under Repair",-30],["Dell Server","Server","IT","IT Administrator","In Use",600],["Ruijie Switch","Switch","IT","IT Administrator","In Use",400],["Ruijie Router","Router","IT","IT Administrator","In Use",25],["Ruijie Access Point","Access Point","IT","","In Use",380],["Sophos Firewall","Firewall","IT","IT Administrator","In Use",150],["Hikvision Camera","CCTV","Security","","In Use",500],["Hikvision NVR","NVR","Security","Security Team","In Use",15],["Old Laptop","Laptop","Operations","","Retired",-400]];
+return{log:[],cfg:{co:"IT Desk",n1:1,n2:1,n3:1},
+departments:mk("DEP-",2,"name",[["IT"],["Accounting"],["HR"],["Security"],["Operations"]]),
+locations:mk("LOC-",2,"name,address",[["Head Office","Floor 1"],["Branch 1","Ground floor"],["Gate 1","Security booth"]]),
+vendors:mk("VEN-",2,"name,contact,phone,email,service",[["TechParts Co","Contact A","000-000","sales@example.com","Hardware repair"],["NetWorks Ltd","Contact B","000-001","help@example.com","Network support"]]),
+employees:mk("EMP-",3,"name,dept,location,email,status",[["Employee A","Accounting","Head Office","a@example.com","Active"],["Employee B","HR","Head Office","b@example.com","Active"],["IT Administrator","IT","Head Office","it@example.com","Active"],["Security Team","Security","Gate 1","sec@example.com","Active"],["Former Employee","Operations","Branch 1","x@example.com","Inactive"]]),
+users:mk("USR-",2,"name,email,role,status",[["IT Administrator","it@example.com","Administrator","Active"],["IT Staff 01","staff01@example.com","IT Technician","Active"],["Employee A","a@example.com","Employee","Active"]]),
+assets:mk("IT-",4,"name,category,dept,owner,status,warranty,location,purchase",A.map((r,i)=>[...r.slice(0,5),d(r[5]),"Head Office",d(-30*i-10)])),
+tickets:mk("TKT-2026-",4,"requester,category,description,priority,status,tech,created",Array.from({length:12},(_,i)=>[["Employee A","Employee B","Security Team"][i%3],TCAT[i%5],["Laptop will not start","Office activation problem","Wi-Fi access point is down","Password reset needed","Printer needs a new toner"][i%5],PRI[(i+1)%4],["Open","Assigned","In Progress","Resolved","Closed","Pending"][i%6],i%4?"IT Staff 01":"",d(-i*17)])),
+comments:mk("CMT-",3,"ticket,author,comment,date",[["TKT-2026-0001","IT Staff 01","Checking the device now.",d(0)],["TKT-2026-0002","IT Staff 01","Waiting for a spare part.",d(-17)]]),
+licenses:mk("LIC-",3,"software,version,type,seats,expires",[["Microsoft Office","2021","Volume","50",d(45)],["Sophos Endpoint","Latest","Subscription","120",d(300)],["Hikvision iVMS-4200","3.x","Free","5",d(900)]]),
+swrecords:mk("SWR-",3,"software,type,target,date,cost",[["Microsoft Office","Assignment","Employee A",d(-60),""],["Microsoft Office","Installation","Lenovo Laptop",d(-60),""],["Sophos Endpoint","Installation","Dell Desktop",d(-30),""],["Microsoft Office","Renewal","Company",d(-330),"1200"]]),
+movements:mk("MOV-",3,"asset,type,from,to,date",[["IT-0001 Lenovo Laptop","Assignment","IT","Employee A",d(-90)],["IT-0002 Dell Desktop","Transfer","Accounting","IT",d(-20)],["IT-0014 Old Laptop","Return","Operations","IT",d(-40)]]),
+maintenance:mk("MNT-",3,"asset,type,vendor,date,status,tech,cost,parts",[["IT-0006 Epson Scanner","Repair","TechParts Co",d(-5),"In Progress","IT Staff 01","80","Feed roller"],["IT-0007 Dell Server","Preventive","NetWorks Ltd",d(14),"Scheduled","IT Staff 01","0",""],["IT-0008 Ruijie Switch","Infrastructure","NetWorks Ltd",d(-90),"Done","IT Staff 01","150","Fan"]]),
+ips:mk("IP-",3,"ip,device,mac,vlan,location,status",[["10.0.0.1","Ruijie Router","","1","Head Office","Used"],["10.0.0.10","Dell Server","","10","Head Office","Used"],["10.0.0.50","","","10","Head Office","Free"]]),
+docs:mk("DOC-",2,"title,type,url,notes",[["Head office network diagram","Diagram","",""],["Switch replacement procedure","Procedure","",""]]),
+categories:mk("CAT-",2,"name,type,sla",[...TCAT.map(c=>[c,"Ticket category",""]),...PRI.map((p,i)=>[p,"Priority",[72,24,8,2][i]])])}}
+/* Cloud mode: paste your Supabase project URL and anon (public) key. Leave both empty to run in local browser mode. */
+const SB_URL="",SB_KEY="";
+const sb=SB_URL&&SB_KEY&&window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
+const blank=()=>{const o={log:[],cfg:{co:"IT Desk",n1:1,n2:1,n3:1}};Object.keys(E).forEach(k=>o[k]=[]);return o};
+let ME=null;
+let S;try{S=JSON.parse(localStorage.getItem("itsm2"))}catch(e){}S=sb?blank():(S||seed());
+const save=()=>{if(sb)return;try{localStorage.setItem("itsm2",JSON.stringify(S))}catch(e){}};
+async function push(n,r){if(!sb)return;const{error}=await sb.from("records").upsert({entity:n,id:r.id,data:r,updated_at:new Date().toISOString()});if(error)alert("Could not save to the database: "+error.message)}
+async function drop(n,id){if(!sb)return;const{error}=await sb.from("records").delete().eq("entity",n).eq("id",id);if(error)alert("Could not delete: "+error.message)}
+async function loadAll(){let all=[],from=0;for(;;){const{data,error}=await sb.from("records").select("entity,data").order("entity").order("id").range(from,from+999);if(error){alert("Could not load data: "+error.message);return}all=all.concat(data);if(data.length<1000)break;from+=1000}
+S=blank();const lg=[];all.forEach(r=>{if(r.entity==="log")lg.push(r.data);else if(S[r.entity])S[r.entity].push(r.data)});S.log=lg.sort((a,b)=>b.id<a.id?-1:1).map(x=>x.t).slice(0,100)}
+function loginUI(){$("nav").innerHTML="";$("ttl").textContent="Sign in";$("bc").textContent="";$("v").innerHTML=`<div class="cd" style="max-width:360px"><label class="note">Email<br><input id="em" type="email" autocomplete="username" style="width:100%"></label><br><br><label class="note">Password<br><input id="pw" type="password" autocomplete="current-password" style="width:100%" onkeydown="if(event.key==='Enter')signin()"></label><p id="le" class="note" style="color:var(--er)"></p><button class="p" onclick="signin()">Sign in</button></div>`}
+async function signin(){const{error}=await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});if(error){$("le").textContent="Sign in failed: "+error.message;return}boot()}
+async function boot(){if(!sb){nav();go(0,0);return}
+const{data:{session}}=await sb.auth.getSession();if(!session){loginUI();return}
+const{data:p}=await sb.from("profiles").select("name,role").eq("id",session.user.id).maybeSingle();
+if(!p){$("v").innerHTML='<div class="cd"><p>Your account has no profile yet. Ask an administrator to add it.</p><button onclick="sb.auth.signOut().then(()=>location.reload())">Sign out</button></div>';return}
+ME=p.name;$("role").innerHTML=`<option>${esc(p.role)}</option>`;$("role").disabled=true;$("so").hidden=false;await loadAll();nav();go(0,0)}
+const role=()=>$("role").value;
+const log=m=>{const t=new Date().toLocaleString()+" - "+role()+": "+m;S.log.unshift(t);S.log=S.log.slice(0,100);save();if(sb)push("log",{id:String(Date.now())+Math.random().toString(36).slice(2,5),t})};
+const M=(k,...v)=>x=>v.includes(x[k]),live=x=>!["Resolved","Closed"].includes(x.status);
+const A=(l,e,f)=>[l,"l",e,f],N=(l,e)=>[l,"f",e],P=(l,p,a)=>[l,"p",p,a];
+const wd=x=>x.warranty&&days(x.warranty)<=30;
+const G=[
+["Dashboard","grid",[P("IT Overview","dash"),A("Open Support Tickets","tickets",live),A("Total IT Assets","assets"),A("Active Employees","employees",M("status","Active")),A("Software License Alerts","licenses",x=>days(x.expires)<=60),A("Warranty Expiration Alerts","assets",wd),P("Recent IT Activities","log")]],
+["IT Support Management","life",[A("All Tickets","tickets"),N("Create New Ticket","tickets"),A("My Assigned Tickets","tickets",x=>x.tech===(ME||"IT Staff 01")),A("My Requests","tickets",x=>x.requester===(ME||"Employee A")),...TCAT.map(c=>A("› "+(c==="Other"?"Other IT Issues":c+" Issues"),"tickets",M("category",c))),A("Assign Technician","tickets",x=>live(x)&&(!x.tech||x.status==="Open")),A("Ticket Comments","comments"),A("Resolution & Closure","tickets",M("status","Resolved","Closed")),P("Ticket History","log","TKT")]],
+["IT Asset Management","monitor",[A("All Assets","assets"),N("Add New Asset","assets"),A("Computers & Laptops","assets",M("category","Laptop","Desktop")),A("Monitors & Peripherals","assets",M("category","Monitor","Peripheral")),A("Printers & Scanners","assets",M("category","Printer","Scanner")),A("Servers","assets",M("category","Server")),A("Network Equipment","assets",M("category","Router","Switch","Access Point","Firewall")),A("CCTV Equipment","assets",M("category","CCTV","NVR")),A("Asset Assignment","movements",M("type","Assignment")),A("Asset Transfer","movements",M("type","Transfer")),A("Asset Return","movements",M("type","Return")),A("Asset Maintenance","maintenance"),A("Warranty Tracking","assets",x=>x.warranty&&days(x.warranty)<=90),A("Retired Assets","assets",M("status","Retired"))]],
+["Software Management","box",[A("Software Inventory","licenses"),N("Add Software","licenses"),A("Software Licenses","licenses"),A("License Assignments","swrecords",M("type","Assignment")),A("License Expiration","licenses",x=>days(x.expires)<=90),A("Software Installation Records","swrecords",M("type","Installation")),P("License Compliance","comp"),A("Renewal History","swrecords",M("type","Renewal"))]],
+["Network & Infrastructure","net",[A("Network Devices","assets",M("category","Router","Switch","Access Point","Firewall")),A("Routers & Switches","assets",M("category","Router","Switch")),A("Access Points","assets",M("category","Access Point")),A("Firewall Inventory","assets",M("category","Firewall")),A("Servers & Storage","assets",M("category","Server")),A("IP Address Management","ips"),A("Network Documentation","docs"),A("Infrastructure Maintenance","maintenance",M("type","Infrastructure"))]],
+["Maintenance Management","tool",[A("Maintenance Schedule","maintenance",M("status","Scheduled","In Progress")),A("Preventive Maintenance","maintenance",M("type","Preventive")),A("Repair Requests","maintenance",M("type","Repair")),A("Maintenance History","maintenance",M("status","Done")),A("Vendor Management","vendors"),A("Parts & Replacement Records","maintenance",x=>x.parts)]],
+["Reports & Analytics","chart",[P("Support Ticket Reports","rep",["tickets","category"]),P("Technician Performance","rep",["tickets","tech","hours"]),P("Hardware Inventory Reports","rep",["assets","category"]),P("Asset Assignment Reports","rep",["assets","dept"]),P("Software License Reports","rep",["licenses","type","seats"]),P("Warranty Reports","rep",["assets",x=>(x.warranty||"None").slice(0,4)]),P("Maintenance Cost Reports","rep",["maintenance","type","cost"]),P("Export to Excel / CSV","exp")]],
+["Administration","gear",[A("User Management","users"),A("Employee Management","employees"),A("Department Management","departments"),P("Role & Permissions","roles"),A("Ticket Categories & Priorities","categories"),A("Locations & Offices","locations"),P("Notification Settings","notif"),P("Audit Logs","log",""),P("Backup & Recovery","backup"),P("System Settings","sys")]]];
+const EMPL=["IT Overview","Create New Ticket","My Requests"];
+const okG=(g,l)=>role()==="Administrator"||(role()==="IT Technician"&&g[0]!=="Administration")||(role()==="Employee"&&EMPL.includes(l[0]));
+const canEdit=n=>role()==="Administrator"||(role()==="IT Technician"&&!["users","departments","locations","categories","employees"].includes(n))||(role()==="Employee"&&n==="tickets");
+const IP={grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+life:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/>',
+monitor:'<rect x="2.5" y="4" width="19" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+box:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+net:'<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5H5v5M12 11.5h7v5"/>',
+tool:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+gear:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+chev:'<path d="M6 9l6 6 6-6"/>'};
+const IC=k=>`<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IP[k]}</svg>`;
+let cg=0,ci=0,og=0,ce="assets",cf=null,flt={q:""};
+function nav(){$("nav").innerHTML=`<div class="lg">${esc(S.cfg.co||"IT Desk")}</div>`+G.map((g,gi)=>{const ls=g[2].map((l,li)=>okG(g,l)?`<a tabindex="0" role="button" class="${gi===cg&&li===ci?"on":""}" onclick="go(${gi},${li})" onkeydown="if(event.key==='Enter')go(${gi},${li})">${esc(l[0])}</a>`:"").join("");return ls?`<button class="gh ${gi===cg?"on":""}" aria-expanded="${gi===og}" onclick="og=og===${gi}?-1:${gi};nav()"><span class="gl">${IC(g[1])}${g[0]}</span><span class="cv${gi===og?" up":""}">${IC("chev")}</span></button><div class="gb ${gi===og?"open":""}">${ls}</div>`:""}).join("")}
+function go(g,i){cg=g;ci=i;og=g;show(G[g][2][i])}
+function relog(){okG(G[cg],G[cg][2][ci])?go(cg,ci):go(0,0)}
+function show(L){flt={q:""};cf=null;if(L[1]!=="p"){ce=L[2];cf=L[3]||null}
+nav();$("bc").textContent="Home / "+G[cg][0]+" / "+L[0];$("ttl").textContent=L[0];
+$("v").innerHTML=L[1]==="p"?PG[L[2]](L[3]):list(ce);
+if(L[1]==="f"&&canEdit(ce))edit(ce)}
+function gsearch(v){if(role()==="Employee")return;show(["Search results","l","assets"]);flt.q=v;$("q").value=v;$("tb").innerHTML=rows("assets")}
+const opts=f=>({dept:()=>S.departments.map(x=>x.name),emp:()=>["",...S.employees.map(x=>x.name)],loc:()=>["",...S.locations.map(x=>x.name)],asset:()=>S.assets.map(x=>x.id+" "+x.name),tkt:()=>S.tickets.map(x=>x.id),ven:()=>["",...S.vendors.map(x=>x.name)]}[f[2]]||(()=>f[3]||[]))();
+function badge(v){const g=["In Use","Resolved","Closed","In Stock","Low","Active","Done","Used","Free"],w=["Under Repair","Pending","Medium","In Progress","Assigned","Scheduled","Reserved"],b=["Lost","Retired","Critical","High","Open","Inactive","Disabled"];return`<span class="tag ${g.includes(v)?"g":w.includes(v)?"w":b.includes(v)?"b":""}">${esc(v)}</span>`}
+const tbl=(h,r)=>`<div class="wrap"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${r.map(x=>`<tr>${x.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+function list(n){const e=E[n];
+const fs=e.fl.map(k=>{const f=e.f.find(x=>x[0]===k);return`<select data-f="${k}" aria-label="Filter by ${f[1]}"><option value="">All ${f[1].toLowerCase()}</option>${opts(f).filter(Boolean).map(o=>`<option>${esc(o)}</option>`).join("")}</select>`}).join("");
+return`<div class="tools"><input id="q" type="search" placeholder="Search ${e.t.toLowerCase()}" aria-label="Search"> ${fs}${canEdit(n)?`<button class="p" onclick="edit('${n}')">Add</button>`:""}<button onclick="csv('${n}')">Export CSV</button><button onclick="print()">Print</button></div><div class="wrap"><table><thead><tr>${e.c.map(c=>`<th>${c==="id"?"ID":esc(e.f.find(x=>x[0]===c)[1])}</th>`).join("")}<th></th></tr></thead><tbody id="tb">${rows(n)}</tbody></table></div>`}
+function rows(n){const e=E[n],q=(flt.q||"").toLowerCase();
+const r=S[n].filter(x=>(!cf||cf(x))&&(role()!=="Employee"||n!=="tickets"||x.requester===(ME||"Employee A"))&&(!q||Object.values(x).join(" ").toLowerCase().includes(q))&&e.fl.every(k=>!flt[k]||x[k]===flt[k]));
+if(!r.length)return`<tr><td colspan="${e.c.length+1}" class="empty">No records found.</td></tr>`;
+return r.map(x=>`<tr>${e.c.map(c=>`<td>${c==="status"&&n==="tickets"&&role()!=="Employee"?`<select data-s="${x.id}" aria-label="Ticket status">${TST.map(s=>`<option${s===x.status?" selected":""}>${s}</option>`).join("")}</select>`:["status","priority"].includes(c)?badge(x[c]):esc(x[c])}</td>`).join("")}<td>${canEdit(n)&&role()!=="Employee"?`<button onclick="edit('${n}','${x.id}')">Edit</button>`:""}${role()==="Administrator"?` <button class="d" onclick="del('${n}','${x.id}')">Delete</button>`:""}</td></tr>`).join("")}
+document.addEventListener("input",e=>{if(e.target.id==="q"){flt.q=e.target.value;$("tb").innerHTML=rows(ce)}});
+document.addEventListener("change",e=>{const t=e.target;
+if(t.dataset.f){flt[t.dataset.f]=t.value;$("tb").innerHTML=rows(ce)}
+if(t.dataset.s){const k=S.tickets.find(x=>x.id===t.dataset.s);k.status=t.value;log(k.id+" status set to "+t.value);save();push("tickets",k);$("tb").innerHTML=rows(ce)}});
+const DF={tickets:{status:"Open",priority:"Medium",created:iso(0)},assets:{status:"In Stock"},comments:{date:iso(0)},movements:{date:iso(0)},maintenance:{date:iso(0)},swrecords:{date:iso(0)}};
+function edit(n,id){const e=E[n],r=id?S[n].find(x=>x.id===id):{...(DF[n]||{}),...(n==="tickets"&&ME?{requester:ME}:{})};
+$("dlg").innerHTML=`<form method="dialog" onsubmit="return false"><h2>${id?"Edit":"Add"} ${e.t.toLowerCase()}</h2>${e.f.map(f=>{const t=f[2],v=esc(r[f[0]]);return`<label>${f[1]}`+(t==="area"?`<textarea name="${f[0]}" rows="2">${v}</textarea>`:t==="date"||!t?`<input name="${f[0]}" type="${t==="date"?"date":"text"}" value="${v}">`:`<select name="${f[0]}">${opts(f).map(o=>`<option${o===r[f[0]]?" selected":""}>${esc(o)}</option>`).join("")}</select>`)+"</label>"}).join("")}<div class="tools"><button class="p" onclick="saveRec('${n}','${id||""}')">Save changes</button><button onclick="$('dlg').close()">Cancel</button></div></form>`;$("dlg").showModal()}
+async function saveRec(n,id){const e=E[n],fd=new FormData($("dlg").querySelector("form")),o={};e.f.forEach(f=>o[f[0]]=(fd.get(f[0])||"").trim());
+if(!o[e.f[0][0]]&&n!=="tickets"){alert("Enter "+e.f[0][1].toLowerCase()+".");return}
+let rec;if(id){rec=S[n].find(x=>x.id===id);Object.assign(rec,o)}else{let m;if(sb){const r=await sb.rpc("next_id",{p_entity:n});if(r.error){alert("Could not create the record: "+r.error.message);return}m=r.data}else m=Math.max(0,...S[n].map(x=>parseInt(x.id.split("-").pop())||0))+1;rec={id:e.p+pad(m,e.n),...o};S[n].push(rec)}
+push(n,rec);
+log((id?"edited ":"added ")+n+" "+(id||""));save();$("dlg").close();show(G[cg][2][ci])}
+function del(n,id){if(confirm("Delete "+id+"? This cannot be undone.")){S[n]=S[n].filter(x=>x.id!==id);drop(n,id);log("deleted "+id);save();$("tb").innerHTML=rows(ce)}}
+function csv(n,data,name){const rs=data||S[n].filter(x=>!cf||cf(x));if(!rs.length){alert("Nothing to export.");return}
+const ks=Object.keys(rs[0]),q=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
+const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+[ks.map(q).join(","),...rs.map(r=>ks.map(k=>q(r[k])).join(","))].join("\r\n")],{type:"text/csv"}));a.download=(name||n)+".csv";a.click()}
+function theme(){const r=document.documentElement;r.dataset.theme=r.dataset.theme==="dark"?"light":"dark"}
+function bk(){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="it-backup-"+iso(0)+".json";a.click()}
+function rs(f){if(!f)return;if(sb){alert("Restore is available in local mode only.");return}const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!Array.isArray(o.assets)||!Array.isArray(o.tickets))throw 0;if(confirm("Replace all current data with this backup?")){S=o;save();go(0,0)}}catch(e){alert("This file is not a valid backup.")}};r.readAsText(f)}
+function resetData(){if(sb){alert("Reset is available in local mode only.");return}if(confirm("Replace all data with the sample data?")){S=seed();save();go(0,0)}}
+const PL=["#2e9e4f","#1b8a9a","#f28c28","#c0392b","#2f5597","#c27c0e","#7b5ea7","#8a8f98"],PC=["#2e9e4f","#c0392b","#1b8a9a","#2f5597","#7b5ea7","#4f6d7a","#c27c0e","#d35400","#a93226","#b9770e"];
+const by=(a,f)=>{const m={};a.forEach(x=>{const k=f(x)||"None";m[k]=(m[k]||0)+1});return Object.entries(m).sort((p,q)=>q[1]-p[1])};
+const donut=(t,it)=>{const tot=it.reduce((s,i)=>s+i[1],0);let c=0;const g=it.map((i,k)=>{const s=c;c+=i[1]/(tot||1)*100;return`${PL[k%8]} ${s}% ${c}%`}).join(",");return`<div class="cd"><h2>${t}</h2><div class="dn" style="background:conic-gradient(${g||"#ccc 0 100%"})"><span>${tot}</span></div><div class="lgd">${it.map((i,k)=>`<span><u style="background:${PL[k%8]}"></u>${esc(i[0])} ${i[1]}</span>`).join("")}</div></div>`};
+const hb=(t,it)=>{const m=Math.max(1,...it.map(i=>i[1]));return`<div class="cd"><h2>${t}</h2>${it.slice(0,5).map(i=>`<div class="hb"><span title="${esc(i[0])}">${esc(i[0])}</span><i style="width:${i[1]/m*60}%"></i>${i[1]}</div>`).join("")||'<p class="note">No data.</p>'}</div>`};
+const al=(t,it)=>`<div class="cd"><h2>${t}</h2>${it.map(i=>`<p>${i}</p>`).join("")||'<p class="note">Nothing to report.</p>'}</div>`;
+const PG={
+dash(){const a=S.assets,tk=S.tickets,op=tk.filter(live),cnt=(...c)=>a.filter(x=>c.includes(x.category)).length;
+const T=[["Licenses",S.licenses.length,"🔑"],["Computers",cnt("Laptop","Desktop"),"💻"],["Network devices",cnt("Router","Switch","Access Point","Firewall"),"🌐"],["CCTV and NVR",cnt("CCTV","NVR"),"📹"],["Printers and scanners",cnt("Printer","Scanner"),"🖨"],["Servers",cnt("Server"),"🗄"],["Open tickets",op.length,"🎫"],["Late tickets",op.filter(t=>days(t.created)<-14).length,"⏰"],["Under repair",a.filter(x=>x.status==="Under Repair").length,"🔧"],["Warranty alerts",a.filter(wd).length,"⚠"]];
+const T2=[["Active employees",S.employees.filter(x=>x.status==="Active").length],["Departments",S.departments.length],["Vendors",S.vendors.length],["Maintenance jobs",S.maintenance.length]];
+const mo=Array.from({length:7},(_,i)=>{const d=new Date();d.setHours(12);d.setDate(1);d.setMonth(d.getMonth()-6+i);return d.toISOString().slice(0,7)});
+const GS=[["New",["Open"],"#2f5597"],["Processing",["Assigned","In Progress"],"#f28c28"],["Pending",["Pending"],"#1b8a9a"],["Solved",["Resolved","Closed"],"#2e9e4f"]];
+const col=mo.map(m=>GS.map(g=>tk.filter(t=>(t.created||"").slice(0,7)===m&&g[1].includes(t.status)).length));
+const mx=Math.max(3,...col.map(c=>c.reduce((s,v)=>s+v,0)));
+return`<div class="tiles">${T.map((t,i)=>`<div class="t" style="background:${PC[i]}"><div><b>${t[1]}</b><small>${t[0]}</small></div><span aria-hidden="true">${t[2]}</span></div>`).join("")}${T2.map(t=>`<div class="t g"><div><b>${t[1]}</b><small>${t[0]}</small></div></div>`).join("")}</div>
+<div class="g3">${donut("Assets by status",by(a,x=>x.status))}${donut("Assets by category",by(a,x=>x.category))}${donut("Tickets by priority",by(tk,x=>x.priority))}</div>
+<div class="g3"><div class="cd"><h2>Tickets status by month</h2><div class="sb">${col.map((c,i)=>`<div class="col"><div class="stk">${c.map((v,k)=>`<i title="${GS[k][0]}: ${v}" style="height:${v/mx*100}%;background:${GS[k][2]}"></i>`).join("")}</div><span>${mo[i].slice(2)}</span></div>`).join("")}</div><div class="lgd">${GS.map(g=>`<span><u style="background:${g[2]}"></u>${g[0]}</span>`).join("")}</div></div>${hb("Top ticket requesters",by(tk,x=>x.requester))}${hb("Top ticket categories",by(tk,x=>x.category))}</div>
+<div class="g3">${al("Software license alerts",S.licenses.filter(x=>days(x.expires)<=60).map(x=>`${esc(x.software)} <span class="note">${days(x.expires)<0?"expired":"in "+days(x.expires)+" days"}</span>`))}${al("Warranty expiration alerts",a.filter(wd).map(x=>`${esc(x.id)} ${esc(x.name)} <span class="note">${days(x.warranty)<0?"expired":"in "+days(x.warranty)+" days"}</span>`))}${al("Recent IT activities",S.log.slice(0,5).map(esc))}</div>`},
+log:(f="")=>`<div class="cd">${S.log.filter(l=>l.includes(f)).map(l=>`<p class="note">${esc(l)}</p>`).join("")||'<p class="note">No activity recorded yet.</p>'}</div>`,
+comp:()=>tbl(["Software","Licenses","Installed","Status"],S.licenses.map(l=>{const u=S.swrecords.filter(r=>r.type==="Installation"&&r.software===l.software).length;return[l.software,l.seats,u,u>+l.seats?"Over-used":"Compliant"]})),
+rep(c){const[n,k,s]=c,f=typeof k==="function"?k:x=>x[k],m={};S[n].forEach(x=>{const g=f(x)||"None";m[g]=m[g]||[0,0];m[g][0]++;m[g][1]+=parseFloat(x[s])||0});
+const r=Object.entries(m).map(([g,v])=>[g,v[0],s?v[1]:""]);window.RG=r.map(x=>({group:x[0],count:x[1],total:x[2]}));
+return`<div class="tools"><button onclick="csv('',RG,'report')">Export CSV</button><button onclick="print()">Print</button></div>`+tbl(["Group","Count",s?"Total":""],r)},
+exp:()=>`<div class="cd"><p class="note">Download any table as a CSV file that opens in Excel.</p><div class="tools">${Object.keys(E).map(n=>`<button onclick="csv('${n}',S.${n},'${n}')">${E[n].t}</button>`).join("")}</div></div>`,
+roles:()=>tbl(["Role","Permissions"],[["Administrator","Everything, including delete, users and settings"],["IT Technician","Manage assets, tickets, licenses, maintenance and network records; view reports"],["Employee","Create tickets, view own requests and the overview"]])+'<p class="note">This prototype only hides screens. A production build must enforce permissions on the server.</p>',
+notif:()=>`<div class="cd">${[["n1","Email the IT team when a ticket is created"],["n2","Warn 30 days before a warranty ends"],["n3","Warn 60 days before a license ends"]].map(n=>`<label class="ck"><input type="checkbox" ${S.cfg[n[0]]?"checked":""} onchange="S.cfg['${n[0]}']=this.checked?1:0;save()"> ${n[1]}</label>`).join("")}<p class="note">Sending email needs the server backend. These choices are stored for it.</p></div>`,
+backup:()=>`<div class="cd"><div class="tools"><button class="p" onclick="bk()">Download backup</button><label class="note">Restore from file <input type="file" accept=".json" onchange="rs(this.files[0])"></label></div><p class="note">Data lives in this browser only, so download a backup regularly.</p></div>`,
+sys:()=>`<div class="cd"><label class="note">Company name<br><input value="${esc(S.cfg.co)}" onchange="S.cfg.co=this.value;save();nav()"></label><div class="tools" style="margin-top:12px"><button onclick="theme()">Switch light or dark theme</button>${role()==="Administrator"?'<button class="d" onclick="resetData()">Reset to sample data</button>':""}</div></div>`};
+boot();
+</script>
 </body>
 </html>
