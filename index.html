@@ -100,7 +100,7 @@ ips:mk("IP-",3,"ip,device,mac,vlan,location,status",[["10.0.0.1","Ruijie Router"
 docs:mk("DOC-",2,"title,type,url,notes",[["Head office network diagram","Diagram","",""],["Switch replacement procedure","Procedure","",""]]),
 categories:mk("CAT-",2,"name,type,sla",[...TCAT.map(c=>[c,"Ticket category",""]),...PRI.map((p,i)=>[p,"Priority",[72,24,8,2][i]])])}}
 /* Cloud mode: paste your Supabase project URL and anon (public) key. Leave both empty to run in local browser mode. */
-const SB_URL="",SB_KEY="";
+const SB_URL="",https://owrbbxziibyrjirkeipw.supabase.co/rest/v1/="";
 const sb=SB_URL&&SB_KEY&&window.supabase?window.supabase.createClient(SB_URL,SB_KEY):null;
 const blank=()=>{const o={log:[],cfg:{co:"IT Desk",n1:1,n2:1,n3:1}};Object.keys(E).forEach(k=>o[k]=[]);return o};
 let ME=null;
